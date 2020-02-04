@@ -1,0 +1,56 @@
+---
+title: "Week 4 in-class activity with tufte template"
+author: "Ruian Yang"
+date: "`r format(Sys.time(),'%Y-%m-%d')`"
+output: 
+  bookdown::tufte_html2: default
+bibliography: mybib.bib
+---
+
+```{r global_options, include=FALSE}
+# Global knitr options
+knitr::opts_chunk$set(fig.width=9, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+# Load packages from tidyverse
+library(tidyverse)
+```
+
+## A plot about starwars.
+```{r starwarsplot, fig.cap="A ggplot gender counts in starwars"}
+ggplot(data=starwars, aes(x=gender)) +
+    geom_bar(stat="count")
+```
+
+We can see a plot related to Starwars in Figure \@ref(fig:starwarsplot).
+
+## Example of running external code using source.
+```{r RunCodeChunkShowAll, echo=FALSE} 
+# Example of running external code using source
+source('my-external-code.R')
+```
+
+## Example of running external code using read chunk.
+```{r}
+# Example of running external code using read chunk
+knitr::read_chunk("my-external-code.R") 
+```
+```{r plot-the-data, echo = FALSE} 
+
+``` 
+
+## Example of caching a chunk.
+```{r import-data, cache=TRUE, cache.extra=tools::md5sum('comp.csv')}
+# Caching via the chunk option 
+d <-  read.csv('comp.csv')
+print.data.frame(head(d))
+```
+
+## Examples of in-line citations.
+See [@leyhausen1979cat] to learn more abour cats. <br />
+See [@doherty2017global] to learn more about dogs. <br />
+[@gough2018breed] has lots of information about cats and dogs. 
+
+## References cited
+
